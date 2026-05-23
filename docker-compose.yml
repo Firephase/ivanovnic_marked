@@ -3,7 +3,7 @@ services:
     build: .
     restart: always
     ports:
-      - "80:5000"
+      - "5000:5000"
     volumes:
       - uploads:/app/static/uploads
       - db:/app/data
