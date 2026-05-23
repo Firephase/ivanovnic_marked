@@ -1,0 +1,20 @@
+services:
+  web:
+    build: .
+    restart: always
+    ports:
+      - "80:5000"
+    volumes:
+      - uploads:/app/static/uploads
+      - db:/app/data
+    environment:
+      - SECRET_KEY=${SECRET_KEY:-замените-на-длинную-случайную-строку}
+      - OWNER_PASSWORD=${OWNER_PASSWORD:-barinov2024}
+      - DATABASE=/app/data/site.db
+    command: >
+      sh -c "python -c 'import app; app.init_db(); app.ensure_owner()' &&
+             gunicorn --bind 0.0.0.0:5000 --workers 2 --timeout 120 app:app"
+
+volumes:
+  uploads:
+  db:

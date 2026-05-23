@@ -20,7 +20,7 @@ MAX_CONTENT_LENGTH = 2 * 1024 * 1024 * 1024  # 2 GB
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app.config["MAX_CONTENT_LENGTH"] = MAX_CONTENT_LENGTH
 
-DATABASE = os.path.join(app.root_path, "site.db")
+DATABASE = os.environ.get("DATABASE", os.path.join(app.root_path, "site.db"))
 
 OWNER_USERNAME = "sergey_barinov"
 
